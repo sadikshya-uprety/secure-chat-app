@@ -6,7 +6,7 @@ import {
   IconButton,
   Text,
   Image,
-  useToast,
+  Toast,
 } from '@chakra-ui/react';
 import { Send, AttachFile, Image as ImageIcon, Close } from '@mui/icons-material';
 import { useAuth } from '../../contexts/AuthContext';
@@ -29,7 +29,7 @@ const MessageBox = () => {
   const { currentUser } = useAuth();
   const { data } = useChat();
   const fileInputRef = useRef();
-  const toast = useToast();
+  const toast = Toast();
   const messagesEndRef = useRef();
 
   const scrollToBottom = () => {

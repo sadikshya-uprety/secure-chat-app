@@ -6,11 +6,11 @@ import {
   Button,
   Container,
   Flex,
-  FormControl,
+  // FormControl,
   Input,
   Text,
   VStack,
-  useToast,
+  Toaster
 } from '@chakra-ui/react';
 import { FaGoogle } from 'react-icons/fa';
 
@@ -20,7 +20,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const { login, googleSignIn } = useAuth();
   const navigate = useNavigate();
-  const toast = useToast();
+  const toast = Toaster;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,12 +29,12 @@ const Login = () => {
       await login(email, password);
       navigate('/chat');
     } catch (error) {
-      toast({
-        title: 'Error',
-        description: error.message,
-        status: 'error',
-        duration: 3000,
-      });
+      // toast({
+      //   title: 'Error',
+      //   description: error.message,
+      //   status: 'error',
+      //   duration: 3000,
+      // });
     }
     setLoading(false);
   };
@@ -44,12 +44,13 @@ const Login = () => {
       await googleSignIn();
       navigate('/chat');
     } catch (error) {
-      toast({
-        title: 'Error',
-        description: error.message,
-        status: 'error',
-        duration: 3000,
-      });
+      console.log(error)
+      // toast({
+      //   title: 'Error',
+      //   description: error.message,
+      //   status: 'error',
+      //   duration: 3000,
+      // });
     }
   };
 
@@ -73,24 +74,24 @@ const Login = () => {
           </Text>
           <form onSubmit={handleSubmit} style={{ width: '100%' }}>
             <VStack spacing={4} width="100%">
-              <FormControl>
-                <Input
-                  type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </FormControl>
-              <FormControl>
-                <Input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </FormControl>
+              {/* <FormControl> */}
+              <Input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              {/* </FormControl> */}
+              {/* <FormControl> */}
+              <Input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              {/* </FormControl> */}
               <Button
                 type="submit"
                 colorScheme="blue"
@@ -123,8 +124,8 @@ const Login = () => {
             </Link>
           </Flex>
         </VStack>
-      </Container>
-    </Box>
+      </Container >
+    </Box >
   );
 };
 

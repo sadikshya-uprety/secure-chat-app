@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
 import { AuthProvider } from './contexts/AuthContext';
 import { ChatProvider } from './contexts/ChatContext';
 import PrivateRoute from './components/Common/PrivateRoute';
@@ -15,40 +15,40 @@ import './styles/index.scss';
 
 const App = () => {
   return (
-    <ChakraProvider>
+    <ChakraProvider value={defaultSystem}>
       <AuthProvider>
-        <ChatProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route
-                path="/chat"
-                element={
-                  <PrivateRoute>
-                    <ChatWindow />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/settings"
-                element={
-                  <PrivateRoute>
-                    <Settings />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <PrivateRoute>
-                    <Profile />
-                  </PrivateRoute>
-                }
-              />
-            </Routes>
-          </BrowserRouter>
-        </ChatProvider>
+        {/* <ChatProvider> */}
+        <BrowserRouter>
+          <Routes>
+            {/* <Route path="/" element={<Login />} /> */}
+            {/* <Route path="/signup" element={<SignUp />} /> */}
+            <Route
+              path="/chat"
+              element={
+                // <PrivateRoute>
+                <ChatWindow />
+                // </PrivateRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                // <PrivateRoute>
+                <Settings />
+                // </PrivateRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                // <PrivateRoute>
+                <Profile />
+                // </PrivateRoute>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+        {/* </ChatProvider> */}
       </AuthProvider>
     </ChakraProvider>
   );
